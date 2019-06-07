@@ -446,7 +446,7 @@ function postApprovedCard(req, res) {
     },
     body: {
       roomId: req.inputs.roomId,
-      text: "One pending request approved",
+      text: "One request has been approved",
       attachments: [
         {
           contentType: "application/vnd.microsoft.card.adaptive",
@@ -481,7 +481,7 @@ function postLastApprovalCard(req, res) {
     },
     body: {
       roomId: req.inputs.roomId,
-      text: "There is one last pending approval.",
+      text: "There is one pending approval.",
       attachments: [
         {
           contentType: "application/vnd.microsoft.card.adaptive",
@@ -549,7 +549,7 @@ module.exports = app => {
       },
       body: {
         roomId: req.body.data.roomId,
-        text: "These are the pending approvals you have.",
+        text: "You have 2 pending approvals.",
         attachments: [
           {
             contentType: "application/vnd.microsoft.card.adaptive",
