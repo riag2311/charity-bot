@@ -1,7 +1,7 @@
 {
     "webhookUrl": "https://77289352.ngrok.io",
     "token___Old": "YzYyN2E2MmYtZWY1MS00NGJlLWI2ZjktNmRiNTA3Y2JmNjYwYmM0Y2U3ZGQtODg0_PF84_consumer",
-    "token": "YjVlMzA4MzQtNDQ4OC00ZmRhLTg3YjgtMjA4YzgyZmVmNTM2ZDIxYzdjYTAtMzc2_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f",
+    "token": "NjZjMjdmMjYtNTk4OS00MDE2LWJhNjQtYWMwZDZhZjcyNzFlOTMwOGM4MDAtZGMy_PF84_consumer",
     "botEmail": "jira_bot_prod@webex.bot",
     "port": 3000,
     "jiraUrl": "webex-team-bots.atlassian.net",
