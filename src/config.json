@@ -2,7 +2,7 @@
     "webhookUrl": "https://77289352.ngrok.io",
     "token___Old": "YzYyN2E2MmYtZWY1MS00NGJlLWI2ZjktNmRiNTA3Y2JmNjYwYmM0Y2U3ZGQtODg0_PF84_consumer",
     "token": "NjZjMjdmMjYtNTk4OS00MDE2LWJhNjQtYWMwZDZhZjcyNzFlOTMwOGM4MDAtZGMy_PF84_consumer",
-    "botEmail": "jira_bot_prod@webex.bot",
+    "botEmail": "concur-bot@webex.bot",
     "port": 3000,
     "jiraUrl": "webex-team-bots.atlassian.net",
     "basicAuth": "d2ViZXgtdGVhbXMtYm90c0BleHRlcm5hbC5jaXNjby5jb206aGREO3FtN1lyUzZ1Lys5K1N5Ryp3SGU9"
