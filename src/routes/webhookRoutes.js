@@ -582,10 +582,13 @@ module.exports = app => {
         switch (result.data.inputs.buttonId) {
           case "firstApprovalCardBtn":
             postApprovedCard(result.data, res);
+            break;
           case "showNextPendingBtn1":
             postLastApprovalCard(result.data, res);
+            break;
           case "sendBackBtn":
             postFinalSendBackCard(result.data, res);
+            break;
           default:
             res.status(500).json({
               error: "The button clicked does not have a listener implemented."
