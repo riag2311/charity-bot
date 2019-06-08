@@ -46,7 +46,7 @@ app.use((error, req, res, next) => {
 });
 
 // Run the server and log the port it is running on
-app.listen(process.env.PORT || 1337, () => {
+app.listen(config.port || 1337, () => {
   const listAllWebhooks = {
     method: "GET",
     url: "https://api.ciscospark.com/v1/webhooks",
@@ -74,7 +74,7 @@ app.listen(process.env.PORT || 1337, () => {
       },
       body: {
         name: "all-events-webhooks",
-        targetUrl: config.webhookUrl + "/api/v1/allMessages",
+        targetUrl: config.webhookUrl + `:${config.port}/api/v1/allMessages`,
         resource: "all",
         event: "all"
       },
@@ -90,7 +90,7 @@ app.listen(process.env.PORT || 1337, () => {
       },
       body: {
         name: "attachment-action-webhook",
-        targetUrl: config.webhookUrl + "/api/v1/attachmentActions",
+        targetUrl: config.webhookUrl + `:${config.port}/api/v1/attachmentActions`,
         resource: "attachmentActions",
         event: "created"
       },
@@ -106,7 +106,7 @@ app.listen(process.env.PORT || 1337, () => {
 
   });
 
-  console.log("Listening on port:", process.env.PORT || 1337);
+  console.log("Listening on port:", config.port || 1337);
 });
 
 function constructDeleteWebhooksRequest(webhookId) {
