@@ -60,7 +60,7 @@ app.listen(process.env.PORT || 1337, () => {
   request(listAllWebhooks, function(error, response, body) {
     if (error) throw new Error(error);
     body.items.forEach(webhook => {
-      let deleteRequest = constructDeleteWebhooksRequest(webhook.id);
+      const deleteRequest = constructDeleteWebhooksRequest(webhook.id);
       request(deleteRequest, function(err, response, body) {
         if (err) throw new Error(error);
       });
