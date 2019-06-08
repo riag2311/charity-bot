@@ -1,5 +1,6 @@
 {
-    "webhookUrl": "https://3e80d187.ngrok.io",
+    "webhookUrl": "http://bots.42hertz.com",
+    "testWebhookUr;": "",
     "token___Old": "YzYyN2E2MmYtZWY1MS00NGJlLWI2ZjktNmRiNTA3Y2JmNjYwYmM0Y2U3ZGQtODg0_PF84_consumer",
     "token": "NjZjMjdmMjYtNTk4OS00MDE2LWJhNjQtYWMwZDZhZjcyNzFlOTMwOGM4MDAtZGMy_PF84_consumer",
     "test_token": "ZjYwYWYxNWItYzUzOS00Nzg0LTkyMDMtYTllM2VhZmQzZGM0ZDIwNzZmYTMtM2M0_PF84_consumer",
