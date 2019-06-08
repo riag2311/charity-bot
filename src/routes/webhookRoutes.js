@@ -413,7 +413,7 @@ function getSendBackSuccessCard(roomId) {
         size: "Medium",
         weight: "Bolder",
         color: "Dark",
-        text: "Andrew Davis' report was send back",
+        text: "Andrew Davis' report was sent back",
         wrap: true
       },
       {
@@ -501,10 +501,10 @@ function postLastApprovalCard(req, res) {
 
 function postFinalSendBackCard(req, res) {
 
-//   res.json({
-//     success: true
-//   });
-    console.info(req.body, 'Request body')
+  res.json({
+    success: true
+  });
+
   const finalSendBackSuccessCard = getSendBackSuccessCard(req.inputs.roomId);
 
   var options = {
