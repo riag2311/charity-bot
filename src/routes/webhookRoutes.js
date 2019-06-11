@@ -46,15 +46,15 @@ function getFirstApprovalsCard(roomId) {
                           {
                             type: "TextBlock",
                             height: "stretch",
+                            weight: "Bolder",
+                            color: "Dark",
                             text: "Employee"
                           },
                           {
                             type: "TextBlock",
                             spacing: "Small",
                             height: "stretch",
-                            weight: "Bolder",
-                            color: "Dark",
-                            text: "Jane Jordan"
+                            text: "Report Name"
                           },
                           {
                             type: "TextBlock",
@@ -78,14 +78,15 @@ function getFirstApprovalsCard(roomId) {
                           {
                             type: "TextBlock",
                             height: "stretch",
-                            text: "Report Name:"
+                            weight: "Bolder",
+                            color: "Dark",
+                            text: "Jane Jordan"
                           },
                           {
                             type: "TextBlock",
                             height: "stretch",
-                            weight: "Bolder",
-                            color: "Dark",
-                            text: "Cisco Live 2019"
+                            spacing: "Small",
+                            text: "Enterprise Connect 2019"
                           },
                           {
                             type: "TextBlock",
@@ -116,8 +117,8 @@ function getFirstApprovalsCard(roomId) {
     actions: [
       {
         type: "Action.Submit",
-        title: "Approve",
         id: "firstApprovalCardBtn",
+        title: "Approve",
         data: {
           roomId,
           buttonId: "firstApprovalCardBtn"
@@ -167,8 +168,8 @@ function getFirstApprovalsCard(roomId) {
           actions: [
             {
               type: "Action.Submit",
-              title: "Submit Send Back",
               id: "firstCardSendBackBtn",
+              title: "Submit Send Back",
               data: {
                 roomId,
                 buttonId: "firstCardSendBackBtn"
@@ -261,15 +262,15 @@ function getLastApprovalCard(roomId) {
                           {
                             type: "TextBlock",
                             height: "stretch",
+                            weight: "Bolder",
+                            color: "Dark",
                             text: "Employee"
                           },
                           {
                             type: "TextBlock",
                             spacing: "Small",
                             height: "stretch",
-                            weight: "Bolder",
-                            color: "Dark",
-                            text: "Andrew Davis"
+                            text: "Report Name"
                           },
                           {
                             type: "TextBlock",
@@ -293,13 +294,14 @@ function getLastApprovalCard(roomId) {
                           {
                             type: "TextBlock",
                             height: "stretch",
-                            text: "Report Name:"
+                            weight: "Bolder",
+                            color: "Dark",
+                            text: "Andrew Davis"
                           },
                           {
                             type: "TextBlock",
                             height: "stretch",
-                            weight: "Bolder",
-                            color: "Dark",
+                            spacing: "Small",
                             text: "Team offsite in Seattle"
                           },
                           {
@@ -331,11 +333,11 @@ function getLastApprovalCard(roomId) {
     actions: [
       {
         type: "Action.Submit",
-        title: "Approve",
         id: "lastApproveBtn",
+        title: "Approve",
         data: {
-          buttonId: "lastApproveBtn",
-          roomId
+          roomId,
+          buttonId: "lastApproveBtn"
         }
       },
       {
@@ -382,11 +384,11 @@ function getLastApprovalCard(roomId) {
           actions: [
             {
               type: "Action.Submit",
-              title: "Submit Send Back",
               id: "sendBackBtn",
+              title: "Submit Send Back",
               data: {
-                buttonId: "sendBackBtn",
-                roomId
+                roomId,
+                buttonId: "sendBackBtn"
               }
             }
           ],
@@ -536,35 +538,35 @@ function postFinalSendBackCard(req, res) {
 
 module.exports = app => {
   app.post("/api/v1/allMessages", (req, res) => {
-      console.info(req.body, "Request")
+    console.info(req.body, "Request")
     if (req.body.data.personEmail != config.botEmail) {
-        const firstCard = getFirstApprovalsCard(req.body.data.roomId);
+      const firstCard = getFirstApprovalsCard(req.body.data.roomId);
 
-    var options = {
-      method: "POST",
-      url: "https://api.ciscospark.com/v1/messages",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + config.token
-      },
-      body: {
-        roomId: req.body.data.roomId,
-        text: "You have 2 pending approvals.",
-        attachments: [
-          {
-            contentType: "application/vnd.microsoft.card.adaptive",
-            content: firstCard
-          }
-        ]
-      },
-      json: true
-    };
+      var options = {
+        method: "POST",
+        url: "https://api.ciscospark.com/v1/messages",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + config.token
+        },
+        body: {
+          roomId: req.body.data.roomId,
+          text: "You have 2 pending approvals.",
+          attachments: [
+            {
+              contentType: "application/vnd.microsoft.card.adaptive",
+              content: firstCard
+            }
+          ]
+        },
+        json: true
+      };
 
-    request(options, function(error, response, body) {
-      if (error) throw new Error(error);
+      request(options, function(error, response, body) {
+        if (error) throw new Error(error);
 
-    //   console.log(body);
-    });
+        //   console.log(body);
+      });
     }
   });
 

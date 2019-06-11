@@ -1,11 +1,11 @@
 {
     "webhookUrl": "http://bots.42hertz.com",
-    "testWebhookUr;": "",
-    "token___Old": "YzYyN2E2MmYtZWY1MS00NGJlLWI2ZjktNmRiNTA3Y2JmNjYwYmM0Y2U3ZGQtODg0_PF84_consumer",
+    "webhookUrl_test": "https://2ce9f4fe.ngrok.io",
+    "token_jira": "YzYyN2E2MmYtZWY1MS00NGJlLWI2ZjktNmRiNTA3Y2JmNjYwYmM0Y2U3ZGQtODg0_PF84_consumer",
     "token": "NjZjMjdmMjYtNTk4OS00MDE2LWJhNjQtYWMwZDZhZjcyNzFlOTMwOGM4MDAtZGMy_PF84_consumer",
-    "test_token": "ZjYwYWYxNWItYzUzOS00Nzg0LTkyMDMtYTllM2VhZmQzZGM0ZDIwNzZmYTMtM2M0_PF84_consumer",
+    "token_test": "ZjYwYWYxNWItYzUzOS00Nzg0LTkyMDMtYTllM2VhZmQzZGM0ZDIwNzZmYTMtM2M0_PF84_consumer",
     "botEmail": "concur-bot@webex.bot",
-    "testBotEmail": "concur-test@webex.bot",
+    "botEmail_test": "concur-test@webex.bot",
     "port": 3000,
     "jiraUrl": "webex-team-bots.atlassian.net",
     "basicAuth": "d2ViZXgtdGVhbXMtYm90c0BleHRlcm5hbC5jaXNjby5jb206aGREO3FtN1lyUzZ1Lys5K1N5Ryp3SGU9"

@@ -4,8 +4,8 @@
   "description": "",
   "main": "src/app.js",
   "scripts": {
-    "start": "node index.js",
-    "watch": "nodemon index.js"
+    "start": "node src/app.js",
+    "watch": "nodemon src/app.js"
   },
   "author": "Srinidhi Rao",
   "license": "MIT",
