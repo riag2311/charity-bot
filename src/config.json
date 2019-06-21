@@ -1,6 +1,6 @@
 {
     "webhookUrl": "http://bots.42hertz.com",
-    "webhookUrl_test": "https://2ce9f4fe.ngrok.io",
+    "webhookUrl_test": "https://4a265a45.ngrok.io",
     "token_jira": "YzYyN2E2MmYtZWY1MS00NGJlLWI2ZjktNmRiNTA3Y2JmNjYwYmM0Y2U3ZGQtODg0_PF84_consumer",
     "token": "NjZjMjdmMjYtNTk4OS00MDE2LWJhNjQtYWMwZDZhZjcyNzFlOTMwOGM4MDAtZGMy_PF84_consumer",
     "token_test": "ZjYwYWYxNWItYzUzOS00Nzg0LTkyMDMtYTllM2VhZmQzZGM0ZDIwNzZmYTMtM2M0_PF84_consumer",

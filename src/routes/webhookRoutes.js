@@ -12,9 +12,9 @@ function getFirstApprovalsCard(roomId) {
         items: [
           {
             type: "TextBlock",
-            size: "Medium",
-            weight: "Bolder",
-            color: "Dark",
+            size: "medium",
+            weight: "bolder",
+            color: "dark",
             text: "2 Pending approvals",
             wrap: true
           },
@@ -25,13 +25,13 @@ function getFirstApprovalsCard(roomId) {
           },
           {
             type: "ColumnSet",
-            horizontalAlignment: "Left",
-            spacing: "Medium",
+            horizontalAlignment: "left",
+            spacing: "medium",
             columns: [
               {
                 type: "Column",
-                horizontalAlignment: "Left",
-                verticalContentAlignment: "Center",
+                horizontalAlignment: "left",
+                verticalContentAlignment: "center",
                 width: "20px"
               },
               {
@@ -45,28 +45,43 @@ function getFirstApprovalsCard(roomId) {
                         items: [
                           {
                             type: "TextBlock",
+                            spacing: "medium",
+                            text: "    "
+                          },
+                          {
+                            type: "TextBlock",
                             height: "stretch",
-                            weight: "Bolder",
-                            color: "Dark",
+                            weight: "bolder",
+                            color: "dark",
                             text: "Employee"
                           },
                           {
                             type: "TextBlock",
-                            spacing: "Small",
                             height: "stretch",
+                            weight: "bolder",
+                            color: "dark",
                             text: "Report Name"
                           },
                           {
                             type: "TextBlock",
-                            spacing: "Medium",
+                            text: "    "
+                          },
+                          {
+                            type: "TextBlock",
+                            weight: "bolder",
+                            color: "dark",
                             text: "Report Date"
                           },
                           {
                             type: "TextBlock",
+                            weight: "bolder",
+                            color: "dark",
                             text: "Amount due to employee"
                           },
                           {
                             type: "TextBlock",
+                            weight: "bolder",
+                            color: "dark",
                             text: "Claimed Amount"
                           }
                         ],
@@ -77,20 +92,25 @@ function getFirstApprovalsCard(roomId) {
                         items: [
                           {
                             type: "TextBlock",
+                            spacing: "medium",
+                            text: "    "
+                          },
+                          {
+                            type: "TextBlock",
                             height: "stretch",
-                            weight: "Bolder",
-                            color: "Dark",
                             text: "Jane Jordan"
                           },
                           {
                             type: "TextBlock",
                             height: "stretch",
-                            spacing: "Small",
                             text: "Enterprise Connect 2019"
                           },
                           {
                             type: "TextBlock",
-                            spacing: "Medium",
+                            text: "    "
+                          },
+                          {
+                            type: "TextBlock",
                             text: "2019-06-09"
                           },
                           {
@@ -136,7 +156,7 @@ function getFirstApprovalsCard(roomId) {
               items: [
                 {
                   type: "ColumnSet",
-                  horizontalAlignment: "Left",
+                  horizontalAlignment: "left",
                   columns: [
                     {
                       type: "Column",
@@ -196,9 +216,9 @@ function getApprovedCard(roomId) {
     body: [
       {
         type: "TextBlock",
-        size: "Medium",
-        weight: "Bolder",
-        color: "Dark",
+        size: "medium",
+        weight: "bolder",
+        color: "dark",
         text: "Jane Jordan's report is approved",
         wrap: true
       }
@@ -228,9 +248,9 @@ function getLastApprovalCard(roomId) {
         items: [
           {
             type: "TextBlock",
-            size: "Medium",
-            weight: "Bolder",
-            color: "Dark",
+            size: "medium",
+            weight: "bolder",
+            color: "dark",
             text: "1 Pending approval",
             wrap: true
           },
@@ -241,13 +261,13 @@ function getLastApprovalCard(roomId) {
           },
           {
             type: "ColumnSet",
-            horizontalAlignment: "Left",
-            spacing: "Medium",
+            horizontalAlignment: "left",
+            spacing: "medium",
             columns: [
               {
                 type: "Column",
-                horizontalAlignment: "Left",
-                verticalContentAlignment: "Center",
+                horizontalAlignment: "left",
+                verticalContentAlignment: "center",
                 width: "20px"
               },
               {
@@ -261,28 +281,43 @@ function getLastApprovalCard(roomId) {
                         items: [
                           {
                             type: "TextBlock",
+                            spacing: "medium",
+                            text: "    "
+                          },
+                          {
+                            type: "TextBlock",
                             height: "stretch",
-                            weight: "Bolder",
-                            color: "Dark",
+                            weight: "bolder",
+                            color: "dark",
                             text: "Employee"
                           },
                           {
                             type: "TextBlock",
-                            spacing: "Small",
                             height: "stretch",
+                            weight: "bolder",
+                            color: "dark",
                             text: "Report Name"
                           },
                           {
                             type: "TextBlock",
-                            spacing: "Medium",
+                            text: "    "
+                          },
+                          {
+                            type: "TextBlock",
+                            weight: "bolder",
+                            color: "dark",
                             text: "Report Date"
                           },
                           {
                             type: "TextBlock",
+                            weight: "bolder",
+                            color: "dark",
                             text: "Amount due to employee"
                           },
                           {
                             type: "TextBlock",
+                            weight: "bolder",
+                            color: "dark",
                             text: "Claimed Amount"
                           }
                         ],
@@ -293,20 +328,25 @@ function getLastApprovalCard(roomId) {
                         items: [
                           {
                             type: "TextBlock",
+                            spacing: "medium",
+                            text: "    "
+                          },
+                          {
+                            type: "TextBlock",
                             height: "stretch",
-                            weight: "Bolder",
-                            color: "Dark",
                             text: "Andrew Davis"
                           },
                           {
                             type: "TextBlock",
                             height: "stretch",
-                            spacing: "Small",
                             text: "Team offsite in Seattle"
                           },
                           {
                             type: "TextBlock",
-                            spacing: "Medium",
+                            text: "    "
+                          },
+                          {
+                            type: "TextBlock",
                             text: "2019-06-09"
                           },
                           {
@@ -352,7 +392,7 @@ function getLastApprovalCard(roomId) {
               items: [
                 {
                   type: "ColumnSet",
-                  horizontalAlignment: "Left",
+                  horizontalAlignment: "left",
                   columns: [
                     {
                       type: "Column",
@@ -412,15 +452,15 @@ function getSendBackSuccessCard(roomId) {
     body: [
       {
         type: "TextBlock",
-        size: "Medium",
-        weight: "Bolder",
-        color: "Dark",
+        size: "medium",
+        weight: "bolder",
+        color: "dark",
         text: "Andrew Davis' report was sent back",
         wrap: true
       },
       {
         type: "TextBlock",
-        spacing: "Medium",
+        spacing: "medium",
         text: "No more pending approvals.",
         wrap: true
       }
@@ -467,7 +507,6 @@ function postApprovedCard(req, res) {
 }
 
 function postLastApprovalCard(req, res) {
-
   res.json({
     success: true
   });
@@ -502,7 +541,6 @@ function postLastApprovalCard(req, res) {
 }
 
 function postFinalSendBackCard(req, res) {
-
   res.json({
     success: true
   });
@@ -538,7 +576,7 @@ function postFinalSendBackCard(req, res) {
 
 module.exports = app => {
   app.post("/api/v1/allMessages", (req, res) => {
-    console.info(req.body, "Request")
+    console.info(req.body, "Request");
     if (req.body.data.personEmail != config.botEmail) {
       const firstCard = getFirstApprovalsCard(req.body.data.roomId);
 
