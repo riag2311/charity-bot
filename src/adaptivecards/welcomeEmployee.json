@@ -1,0 +1,54 @@
+{
+    "type": "AdaptiveCard",
+    "version": "1.0",
+    "body": [
+        {
+            "type": "ColumnSet",
+            "columns": [
+                {
+                    "type": "Column",
+                    "width": "auto",
+                    "items": [
+                        {
+                            "type": "Image",
+                            "altText": "",
+                            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/1200px-Cisco_logo_blue_2016.svg.png",
+                            "size": "medium"
+                        }
+                    ]
+                },
+                {
+                    "type": "Column",
+                    "width": "stretch",
+                    "items": [
+                        {
+                            "type": "Image",
+                            "altText": "",
+                            "url": "https://www.pngfind.com/pngs/m/492-4925756_charity-recommendations-charity-logo-png-transparent-png.png",
+                            "size": "medium",
+                            "horizontalAlignment": "right",
+                            "width": "89px",
+                            "height": "48px"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "TextBlock",
+            "text": "Cisco Manager Charity Match Drive 2019",
+            "weight": "Bolder",
+            "size": "Medium",
+            "horizontalAlignment": "Center"
+        },
+        {
+            "type": "TextBlock",
+            "text": "Hello!! Welcome to Cisco's 2019 Charity Match Drive."
+        },
+        {
+          "type": "TextBlock",
+            "text": "You have been identified as an \"Employee\" contributor, which means every dollar you donate during FY20 is matched by our managers at 100% and will go towards your charity."
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json"
+}

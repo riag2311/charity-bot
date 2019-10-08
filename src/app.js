@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const request = require("request");
 const config = require("./config.json");
+const mongoose = require("mongoose");
 
 // Start the express app
 const app = express();
@@ -74,7 +75,7 @@ app.listen(config.port || 1337, () => {
       },
       body: {
         name: "all-events-webhooks",
-        targetUrl: config.webhookUrl + `:${config.port}/api/v1/allMessages`,
+        targetUrl: config.webhookUrl + `/api/v1/allMessages`,
         resource: "all",
         event: "all"
       },
@@ -90,7 +91,7 @@ app.listen(config.port || 1337, () => {
       },
       body: {
         name: "attachment-action-webhook",
-        targetUrl: config.webhookUrl + `:${config.port}/api/v1/attachmentActions`,
+        targetUrl: config.webhookUrl + `/api/v1/attachmentActions`,
         resource: "attachmentActions",
         event: "created"
       },
@@ -120,3 +121,12 @@ function constructDeleteWebhooksRequest(webhookId) {
     json: true
   };
 }
+
+//Mongoose
+mongoose.connect('mongodb+srv://riag:charitybot@charity-sr7nb.mongodb.net/charity?retryWrites=true&w=majority')
+.then(result => {
+  app.listen(3000);
+})
+.catch(err => {
+  console.log(err);
+})
