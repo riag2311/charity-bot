@@ -55,28 +55,40 @@
             "placeholder": "",
             "choices": [
                 {
-                    "title": "1",
-                    "value": "1"
+                    "title": "Destination: Home",
+                    "value": "Destination: Home"
                 },
                 {
-                    "title": "2",
-                    "value": "2"
+                    "title": "Rainforest Trust",
+                    "value": "Rainforest Trust"
                 },
                 {
-                    "title": "3",
-                    "value": "3"
+                    "title": "World Wildlife Fund, Inc.",
+                    "value": "World Wildlife Fund, Inc."
                 },
                 {
-                    "title": "4",
-                    "value": "4"
+                    "title": "Save the Children",
+                    "value": "Save the Children"
                 },
                 {
-                    "title": "5",
-                    "value": "5"
+                    "title": "Kids in Need of Defense (KIND)",
+                    "value": "Kids in Need of Defense (KIND)"
                 },
                 {
-                    "title": "6",
-                    "value": "6"
+                    "title": "Catholic Charities USA",
+                    "value": "Catholic Charities USA"
+                },
+                {
+                    "title": "U.S. Committee for Refugees and Immigrants, Inc.",
+                    "value": "U.S. Committee for Refugees and Immigrants, Inc."
+                },
+                {
+                    "title": "Florence Immigrant and Refugee Rights Project, Inc.",
+                    "value": "Florence Immigrant and Refugee Rights Project, Inc."
+                },
+                {
+                    "title": "Mercy Corps U.S.",
+                    "value": "Mercy Corps U.S."
                 }
             ],
             "id": "select"
