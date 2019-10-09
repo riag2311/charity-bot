@@ -1,0 +1,105 @@
+{
+    "type": "AdaptiveCard",
+    "version": "1.0",
+    "body": [
+        {
+            "type": "ColumnSet",
+            "columns": [
+                {
+                    "type": "Column",
+                    "width": "auto",
+                    "items": [
+                        {
+                            "type": "Image",
+                            "altText": "",
+                            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/1200px-Cisco_logo_blue_2016.svg.png",
+                            "size": "Medium"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "TextBlock",
+            "text": "Cisco Manager Charity Match Drive 2019",
+            "weight": "Bolder",
+            "size": "Medium",
+            "horizontalAlignment": "Center",
+            "spacing": "Medium"
+        },
+        {
+            "type": "TextBlock",
+            "text": "You have been identified yourself as a \"Manager\" contributor, which means every dollar you donate during FY20 is matched by our managers at 100% and will go towards your charity.",
+            "wrap": true
+        },
+        {
+            "type": "TextBlock",
+            "text": "How would you like to contribute in FY20?",
+            "spacing": "Medium",
+            "horizontalAlignment": "Center"
+        },
+        {
+            "type": "TextBlock",
+            "text": "Amount:-"
+        },
+        {
+            "type": "Input.Number",
+            "placeholder": "Contribution",
+            "id": "amountInput"
+        },
+        {
+            "type": "TextBlock",
+            "text": "*Please reply in dollars and cents.",
+            "size": "Small",
+            "weight": "Lighter"
+        },
+        {
+            "type": "TextBlock",
+            "text": "Select Business Unit:-"
+        },
+        {
+            "type": "Input.ChoiceSet",
+            "placeholder": "",
+            "choices": [
+                {
+                    "title": "Platform",
+                    "value": "Platform"
+                },
+                {
+                    "title": "Jabber",
+                    "value": "Jabber"
+                },
+                {
+                    "title": "Calling",
+                    "value": "Calling"
+                },
+                {
+                    "title": "ICT",
+                    "value": "ICT"
+                },
+                {
+                    "title": "Meeting",
+                    "value": "Meeting"
+                },
+                {
+                    "title": "Devices",
+                    "value": "Devices"
+                }
+            ],
+            "id": "businessUnit",
+            "value": "Platform",
+            "wrap": true
+        },
+        {
+            "type": "ActionSet",
+            "actions": [
+                {
+                    "type": "Action.Submit",
+                    "title": "Submit",
+                    "id": "detailsSubmit"
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json"
+}

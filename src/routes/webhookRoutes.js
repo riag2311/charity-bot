@@ -4,13 +4,8 @@ var axios = require("axios");
 var https = require('https');
 var webexPack = require('webex');
 const config = require("../config.json");
-const mongoose = require("mongoose");
-const welcomeCard_Employee = require('../adaptivecards/welcomeEmployee.json');
-const welcomeCard_Manager = require('../adaptivecards/welcomeManager.json');
-const contributionCard_Amount = require('../adaptivecards/contributionAmount.json');
-const charityCard_Preference = require('../adaptivecards/charityPreference.json');
-const selectCard_CharityName = require('../adaptivecards/selectCharityName.json');
-const selectCard_BusinessUnit = require('../adaptivecards/selectBusinessUnit.json');
+const detailsCard_Employee = require('../adaptivecards/detailsCard_Employee.json');
+const detailsCard_Manager = require('../adaptivecards/detailsCard_Manager.json');
 const thankyouCard_Employee = require('../adaptivecards/thankyouEmployee.json');
 const thankyouCard_Manager = require('../adaptivecards/thankyouManager.json');
 const welcomeMessageCard = require('../adaptivecards/welcomeMessage.json');
@@ -23,7 +18,6 @@ const headers = { Authorization: "Bearer " + config.token };
 var cardDetails = {
   "amount": '',
   "charityname": '',
-  "textvalid": '',
   "user": '',
   "business_unit": '',
   "email": '',
@@ -63,7 +57,7 @@ var cardOptions = {
   },
   body: {
     roomId: "",
-    text: "",
+    text: "This bot is not supported on your current teams app. Please chat with me using the latest version of the WebEx Teams desktop app",
     attachments: []
   },
   json: true
@@ -125,55 +119,9 @@ module.exports = app => {
   //text messages
   app.post("/api/v1/allMessages", (req, res) => {
     console.info("Reached messages node");
-    if (req.body.event.toLowerCase() === "created" && req.body.resource.toLowerCase() === "memberships") {
-      sendCard(req.body.data, welcomeMessageCard);
-    } else if (req.body.data.personEmail != "CharityBot@webex.bot") {
+    if ((req.body.data.personEmail === config.botEmail && req.body.event.toLowerCase() === "created" && req.body.resource.toLowerCase() === "memberships") || req.body.data.personEmail != config.botEmail) {
       cardDetails.email = req.body.data.personEmail;
-      console.log(cardDetails.email);
-      const url = "https://api.ciscospark.com/v1/messages/" + req.body.data.id
-      axios
-        .get(url, { headers: headers })
-        .then(result => {
-          console.log(result.data.text.toLowerCase());
-          cardDetails.textvalid = result.data.text;
-          switch (result.data.text.split(" ").join("").toLowerCase()) {
-            case "hello":
-            case "hi":
-            case "hey":
-              sendCard(req.body.data, welcomeMessageCard);
-              break;  
-            case "@charity_employee":  
-            case "@charitybot@charity_employee":
-            case "charitybot@charity_employee":  
-              sendCard(result.data, welcomeCard_Employee);
-              setTimeout(() => {
-                sendCard(result.data, contributionCard_Amount);
-              }, 6000)
-              break;
-            case "@charity_manager":
-            case "charitybot@charity_manager":
-            case "@charitybot@charity_manager":  
-              sendCard(result.data, welcomeCard_Manager);
-              setTimeout(() => {
-                sendCard(result.data, contributionCard_Amount);
-              }, 6000)
-              break;
-            case "help":
-            case "charitybothelp":
-            case "@charitybothelp":  
-            case "@charity_bot":
-              webex.messages.create({
-                markdown: "I'm here to help you get stuff done.<br/>Type your choice from below:<br/>1. ***@charity_employee*** for signing in as an Employee.<br/>2. ***@charity_manager*** for signing in as a Manager",
-                roomId: result.data.roomId
-              })
-              break;
-            default:
-              webex.messages.create({
-                markdown: 'Type ***help*** to start.',
-                roomId: result.data.roomId
-              })
-          }
-        });
+      sendCard(req.body.data, welcomeMessageCard);
     }
   });
 
@@ -191,58 +139,44 @@ module.exports = app => {
       .then(result => {
         console.log(result.data);
         switch (result.data.inputs.buttonId) {
-          case "AmountSubmit":
-            console.log(cardDetails.textvalid);
-            if (cardDetails.textvalid == "@charity_employee" || cardDetails.textvalid == "CharityBot @charity_employee") {
-              cardDetails.user = "employee";
-              cardDetails.amount = result.data.inputs.amount;
-              sendCard(result.data, charityCard_Preference)
-            }
-            else {
-              cardDetails.user = "manager";
-              cardDetails.amount = result.data.inputs.amount;
-              cardDetails.charityname = "Will be assigned by us";
-              sendCard(result.data, selectCard_BusinessUnit);
-            }
+          case "employeeBtn":
+            cardDetails.user = "employee"
+            cardDetails.email
+            sendCard(result.data, detailsCard_Employee);
             break;
-          case "yesprefer":
-            sendCard(result.data, selectCard_CharityName);
+          case "managerBtn":
+            cardDetails.user = "manager"
+            sendCard(result.data, detailsCard_Manager);
             break;
-          case "noprefer":
-            cardDetails.charityname = "Will be assigned by us"
-            sendCard(result.data, selectCard_BusinessUnit);
-            break;
-          case "preferenceCharity":
-            cardDetails.charityname = result.data.inputs.select;
-            sendCard(result.data, selectCard_BusinessUnit);
-            break;
-          case "BUselect":
-            cardDetails.business_unit = result.data.inputs.bu;
-            cardDetails.date = Date(Date.now()).toString();
-            const charitycontribution_storage = new Charitycontribution({
-              email: cardDetails.email,
-              type_of_contributor: cardDetails.user,
-              business_unit: cardDetails.business_unit,
-              contribution_amount: cardDetails.amount,
-              charity_name: cardDetails.charityname,
-              date: cardDetails.date
-            });
-            charitycontribution_storage.save()
-              .then(result => {
-                console.log('Data Updated');
-              })
-              .catch(err => {
-                console.log(err);
+          case "detailsSubmit":
+              cardDetails.amount = result.data.inputs.amountInput;
+              cardDetails.date = Date(Date.now()).toString();
+              cardDetails.charityname = result.data.inputs.preferredCharity;
+              cardDetails.business_unit = result.data.inputs.businessUnit;
+              const charitycontribution_storage = new Charitycontribution({
+                email: cardDetails.email,
+                type_of_contributor: cardDetails.user,
+                business_unit: cardDetails.business_unit,
+                contribution_amount: cardDetails.amount,
+                charity_name: cardDetails.charityname,
+                date: cardDetails.date
               });
-            if (cardDetails.user == "employee") {
-              thankyouCard_Employees(thankyouCard_Employee, 'title');
-              sendCard(result.data, thankyouCard_Employee);
-            }
-            else {
-              thankyouCard_Managers(thankyouCard_Manager, 'title');
-              sendCard(result.data, thankyouCard_Manager);
-            }
-            break;
+              charitycontribution_storage.save()
+                .then(result => {
+                  console.log('Data Updated');
+                })
+                .catch(err => {
+                  console.log(err);
+                });
+
+              if (cardDetails.user == "employee") {
+                thankyouCard_Employees(thankyouCard_Employee, 'title');
+                sendCard(result.data, thankyouCard_Employee);
+              }
+              else {
+                thankyouCard_Managers(thankyouCard_Manager, 'title');
+                sendCard(result.data, thankyouCard_Manager);
+              }
         }
       })
       .catch(err => console.log(err));
