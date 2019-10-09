@@ -16,8 +16,6 @@ const thankyouCard_Manager = require('../adaptivecards/thankyouManager.json');
 const welcomeMessageCard = require('../adaptivecards/welcomeMessage.json');
 const Charitycontribution = require('../models/Charity');
 
-const charity_employee_regex = new RegExp(/\/?(charity_employee)(.)*/i);
-
 // Headers to be used with API calls to Hydra
 const headers = { Authorization: "Bearer " + config.token };
 
@@ -127,7 +125,6 @@ module.exports = app => {
   //text messages
   app.post("/api/v1/allMessages", (req, res) => {
     console.info("Reached messages node");
-
     if (req.body.event.toLowerCase() === "created" && req.body.resource.toLowerCase() === "memberships") {
       sendCard(req.body.data, welcomeMessageCard);
     } else if (req.body.data.personEmail != "CharityBot@webex.bot") {
@@ -139,27 +136,31 @@ module.exports = app => {
         .then(result => {
           console.log(result.data.text.toLowerCase());
           cardDetails.textvalid = result.data.text;
-          switch (result.data.text.toLowerCase()) {
+          switch (result.data.text.split(" ").join("").toLowerCase()) {
             case "hello":
             case "hi":
             case "hey":
               sendCard(req.body.data, welcomeMessageCard);
-              break;
-            case charity_employee_regex:
+              break;  
+            case "@charity_employee":  
+            case "@charitybot@charity_employee":
+            case "charitybot@charity_employee":  
               sendCard(result.data, welcomeCard_Employee);
               setTimeout(() => {
                 sendCard(result.data, contributionCard_Amount);
               }, 6000)
               break;
             case "@charity_manager":
-            case "@charitybot @charity_manager":
+            case "charitybot@charity_manager":
+            case "@charitybot@charity_manager":  
               sendCard(result.data, welcomeCard_Manager);
               setTimeout(() => {
                 sendCard(result.data, contributionCard_Amount);
               }, 6000)
               break;
             case "help":
-            case "charitybot help":
+            case "charitybothelp":
+            case "@charitybothelp":  
             case "@charity_bot":
               webex.messages.create({
                 markdown: "I'm here to help you get stuff done.<br/>Type your choice from below:<br/>1. ***@charity_employee*** for signing in as an Employee.<br/>2. ***@charity_manager*** for signing in as a Manager",
