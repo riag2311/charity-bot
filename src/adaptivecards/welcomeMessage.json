@@ -16,21 +16,6 @@
                             "size": "medium"
                         }
                     ]
-                },
-                {
-                    "type": "Column",
-                    "width": "stretch",
-                    "items": [
-                        {
-                            "type": "Image",
-                            "altText": "",
-                            "url": "https://www.pngfind.com/pngs/m/492-4925756_charity-recommendations-charity-logo-png-transparent-png.png",
-                            "size": "medium",
-                            "horizontalAlignment": "right",
-                            "width": "89px",
-                            "height": "48px"
-                        }
-                    ]
                 }
             ]
         },
@@ -39,17 +24,64 @@
             "text": "Cisco Manager Charity Match Drive 2019",
             "weight": "Bolder",
             "size": "Medium",
-            "horizontalAlignment": "Center"
+            "horizontalAlignment": "Center",
+            "spacing": "Medium"
         },
         {
             "type": "TextBlock",
-            "text": "Hello!! My name is Charity Bot. ",
+            "text": "Hello!! Welcome to Cisco's 2019 Charity Match Drive. My name is Charity Bot.",
             "wrap": true
         },
         {
             "type": "TextBlock",
-            "text": "Tag and type \"@charity_employee\" or \"@charity_manager\" for my help in donating to a charity.",
-            "wrap": true
+            "text": "Please select your role.",
+            "horizontalAlignment": "Left",
+            "spacing": "Medium"
+        },
+        {
+            "type": "ColumnSet",
+            "columns": [
+                {
+                    "type": "Column",
+                    "width": "stretch",
+                    "items": [
+                        {
+                            "type": "ActionSet",
+                            "actions": [
+                                {
+                                    "type": "Action.Submit",
+                                    "title": "Employee",
+                                    "id": "employeeBtn",
+                                    "data":{
+                                        "buttonId": "employeeBtn"
+                                      }
+                                }
+                            ]
+                        }
+                    ],
+                    "horizontalAlignment": "Center"
+                },
+                {
+                    "type": "Column",
+                    "width": "stretch",
+                    "items": [
+                        {
+                            "type": "ActionSet",
+                            "actions": [
+                                {
+                                    "type": "Action.Submit",
+                                    "title": "Manager",
+                                    "id": "managerBtn",
+                                    "data":{
+                                        "buttonId": "managerBtn"
+                                      }
+                                }
+                            ]
+                        }
+                    ],
+                    "horizontalAlignment": "Center"
+                }
+            ]
         }
     ],
     "$schema": "http://adaptivecards.io/schemas/adaptive-card.json"

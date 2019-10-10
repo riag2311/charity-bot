@@ -16,21 +16,6 @@
                             "size": "medium"
                         }
                     ]
-                },
-                {
-                    "type": "Column",
-                    "width": "stretch",
-                    "items": [
-                        {
-                            "type": "Image",
-                            "altText": "",
-                            "url": "https://www.pngfind.com/pngs/m/492-4925756_charity-recommendations-charity-logo-png-transparent-png.png",
-                            "size": "medium",
-                            "horizontalAlignment": "right",
-                            "width": "89px",
-                            "height": "48px"
-                        }
-                    ]
                 }
             ]
         },
@@ -39,17 +24,53 @@
             "text": "Cisco Manager Charity Match Drive 2019",
             "weight": "Bolder",
             "size": "Medium",
-            "horizontalAlignment": "Center"
+            "horizontalAlignment": "Center",
+            "spacing": "Medium"
         },
         {
             "type": "TextBlock",
-            "text": "Which Cisco business unit do you belong to?",
+            "text": "You have been identified yourself as an \"Employee\" contributor, which means every dollar you donate during FY20 is matched by our managers at 100% and will go towards your charity.",
             "wrap": true
         },
         {
             "type": "TextBlock",
-            "text": "Select Business Unit:-",
+            "text": "How would you like to contribute in FY20?",
+            "spacing": "Medium",
+            "horizontalAlignment": "Center"
+        },
+        {
+            "type": "TextBlock",
+            "text": "Amount:-"
+        },
+        {
+            "type": "Input.Number",
+            "placeholder": "Contribution",
+            "id": "amountInput"
+        },
+        {
+            "type": "TextBlock",
+            "text": "*Please reply in dollars and cents.",
+            "size": "Small",
             "weight": "Lighter"
+        },
+        {
+            "type": "TextBlock",
+            "text": "Enter your preferred Charity:-"
+        },
+        {
+            "type": "Input.Text",
+            "placeholder": "Charity Name",
+            "id": "preferredCharity"
+        },
+        {
+            "type": "TextBlock",
+            "text": "*Please leave it blank if you dont have preference",
+            "size": "Small",
+            "weight": "Lighter"
+        },
+        {
+            "type": "TextBlock",
+            "text": "Select Business Unit:-"
         },
         {
             "type": "Input.ChoiceSet",
@@ -80,7 +101,9 @@
                     "value": "Devices"
                 }
             ],
-            "id": "bu"
+            "id": "businessUnit",
+            "value": "Platform",
+            "wrap": true
         },
         {
             "type": "ActionSet",
@@ -88,9 +111,9 @@
                 {
                     "type": "Action.Submit",
                     "title": "Submit",
-                    "style": "positive",
-                    "data":{
-                      "buttonId": "BUselect"
+                    "id": "detailsSubmit",
+                    "data": {
+                        "buttonId": "detailsSubmit"
                     }
                 }
             ]
