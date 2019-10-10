@@ -21,6 +21,7 @@ var cardDetails = {
   "user": '',
   "business_unit": '',
   "email": '',
+  "_id": '',
   "date": ''
 }
 
@@ -72,6 +73,8 @@ function thankyouCard_Employees(thankyouCard_Employee, key) {
             thankyouCard_Employee['value'] = "$" + cardDetails.amount;
           else if (thankyouCard_Employee[property] === 'Charity Name :')
             thankyouCard_Employee['value'] = cardDetails.charityname;
+          else if (thankyouCard_Employee[property] === 'Business Unit :')
+            thankyouCard_Employee['value'] = cardDetails.business_unit;
         }
         else if (typeof thankyouCard_Employee[property] === 'object') {
           thankyouCard_Employees(thankyouCard_Employee[property], key);
@@ -89,6 +92,8 @@ function thankyouCard_Managers(thankyouCard_Manager, key) {
         if (property === key) {
           if (thankyouCard_Manager[property] === 'Amount :')
             thankyouCard_Manager['value'] = "$" + cardDetails.amount;
+          else if (thankyouCard_Manager[property] === 'Business Unit :')
+            thankyouCard_Manager['value'] = cardDetails.business_unit;
         }
         else if (typeof thankyouCard_Manager[property] === 'object') {
           thankyouCard_Managers(thankyouCard_Manager[property], key);
@@ -110,6 +115,11 @@ function sendCard(req, cardContent) {
     basicMessageId = body.id;
     if (error) throw new Error(error);
   });
+}
+
+// Check if user input data is numeric
+function isNumeric(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
 
@@ -140,6 +150,7 @@ module.exports = app => {
         switch (result.data.inputs.buttonId) {
           case "employeeBtn":
             cardDetails.user = "employee"
+            cardDetails.email
             sendCard(result.data, detailsCard_Employee);
             break;
           case "managerBtn":
@@ -147,12 +158,25 @@ module.exports = app => {
             sendCard(result.data, detailsCard_Manager);
             break;
           case "detailsSubmit":
+            if (!isNumeric(result.data.inputs.amountInput)) {
+              webex.messages.create({
+                markdown: 'The **amount** entered is not a number. Please enter a number and re-submit the form.',
+                roomId: result.data.roomId,
+              })
+              if (cardDetails.user == "employee") {
+                sendCard(result.data, detailsCard_Employee);
+              }
+              else{
+                sendCard(result.data, detailsCard_Manager);
+              }
+            } 
+            else {
               cardDetails.amount = result.data.inputs.amountInput;
               cardDetails.date = Date(Date.now()).toString();
               cardDetails.charityname = result.data.inputs.preferredCharity;
               cardDetails.business_unit = result.data.inputs.businessUnit;
-              if (!cardDetails.charityname){
-                cardDetails.charityname = "No Preference"
+              if(!cardDetails.charityname){
+                cardDetails.charityname="No Preference";
               }
               const charitycontribution_storage = new Charitycontribution({
                 email: cardDetails.email,
@@ -174,10 +198,11 @@ module.exports = app => {
                 thankyouCard_Employees(thankyouCard_Employee, 'title');
                 sendCard(result.data, thankyouCard_Employee);
               }
-              else{
+              else {
                 thankyouCard_Managers(thankyouCard_Manager, 'title');
                 sendCard(result.data, thankyouCard_Manager);
               }
+            }
         }
       })
       .catch(err => console.log(err));

@@ -13,7 +13,7 @@
                             "type": "Image",
                             "altText": "",
                             "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/1200px-Cisco_logo_blue_2016.svg.png",
-                            "size": "Medium"
+                            "size": "medium"
                         }
                     ]
                 }
@@ -29,7 +29,7 @@
         },
         {
             "type": "TextBlock",
-            "text": "You have been identified yourself as a \"Manager\" contributor, which means every dollar you donate during FY20 is matched by our managers at 100% and will go towards your charity.",
+            "text": "You have been identified yourself as a \"Manager\" participating in the charity drive, meaning Cisco will match your contributions which will go towards your charity.",
             "wrap": true
         },
         {
