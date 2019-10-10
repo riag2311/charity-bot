@@ -72,7 +72,11 @@ function thankyouCard_Employees(thankyouCard_Employee, key) {
           if (thankyouCard_Employee[property] === 'Amount :')
             thankyouCard_Employee['value'] = "$" + cardDetails.amount;
           else if (thankyouCard_Employee[property] === 'Charity Name :')
-            thankyouCard_Employee['value'] = cardDetails.charityname;
+            if (cardDetails.charityname != '') {
+              thankyouCard_Employee['value'] = cardDetails.charityname;
+            } else {
+              thankyouCard_Employee['value'] = '-- No preferred charity --';
+            }
         }
         else if (typeof thankyouCard_Employee[property] === 'object') {
           thankyouCard_Employees(thankyouCard_Employee[property], key);
@@ -113,6 +117,11 @@ function sendCard(req, cardContent) {
   });
 }
 
+// Check if user input data is numeric
+function isNumeric(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
 
 module.exports = app => {
 
@@ -149,9 +158,15 @@ module.exports = app => {
             sendCard(result.data, detailsCard_Manager);
             break;
           case "detailsSubmit":
+            if (!isNumeric(result.data.inputs.amountInput)) {
+              webex.messages.create({
+                markdown: 'The **amount** entered is not a nubmer. Please enter a number and re-submit the form.',
+                roomId: result.data.roomId
+              })
+            } else {
               cardDetails.amount = result.data.inputs.amountInput;
               cardDetails.date = Date(Date.now()).toString();
-              cardDetails.charityname = result.data.inputs.preferredCharity;
+              cardDetails.charityname = result.data.inputs.preferredCharity ? result.data.inputs.preferredCharity : '';
               cardDetails.business_unit = result.data.inputs.businessUnit;
               const charitycontribution_storage = new Charitycontribution({
                 email: cardDetails.email,
@@ -177,6 +192,7 @@ module.exports = app => {
                 thankyouCard_Managers(thankyouCard_Manager, 'title');
                 sendCard(result.data, thankyouCard_Manager);
               }
+            }
         }
       })
       .catch(err => console.log(err));
