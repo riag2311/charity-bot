@@ -43,6 +43,10 @@
                 {
                     "title": "Amount :",
                     "value": ""
+                },
+                {
+                    "title": "Business Unit",
+                    "value": ""
                 }
             ]
         },

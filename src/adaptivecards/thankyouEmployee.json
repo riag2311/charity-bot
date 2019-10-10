@@ -47,6 +47,10 @@
                 {
                     "title": "Charity Name :",
                     "value": ""
+                },
+                {
+                    "title": "Business Unit",
+                    "value": ""
                 }
             ]
         },
