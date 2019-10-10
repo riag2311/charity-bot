@@ -29,7 +29,7 @@
         },
         {
             "type": "TextBlock",
-            "text": "You have been identified yourself as a \"Manager\" participating in the charity drive, meaning Cisco will match your contributions which will go towards your charity.",
+            "text": "You have identified yourself as a \"Manager\" participating in the charity drive, meaning Cisco will match your contributions which will go towards your charity.",
             "wrap": true
         },
         {
