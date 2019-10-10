@@ -21,7 +21,6 @@ var cardDetails = {
   "user": '',
   "business_unit": '',
   "email": '',
-  "_id": '',
   "date": ''
 }
 
@@ -141,7 +140,6 @@ module.exports = app => {
         switch (result.data.inputs.buttonId) {
           case "employeeBtn":
             cardDetails.user = "employee"
-            cardDetails.email
             sendCard(result.data, detailsCard_Employee);
             break;
           case "managerBtn":
@@ -153,6 +151,9 @@ module.exports = app => {
               cardDetails.date = Date(Date.now()).toString();
               cardDetails.charityname = result.data.inputs.preferredCharity;
               cardDetails.business_unit = result.data.inputs.businessUnit;
+              if (!cardDetails.charityname){
+                cardDetails.charityname = "No Preference"
+              }
               const charitycontribution_storage = new Charitycontribution({
                 email: cardDetails.email,
                 type_of_contributor: cardDetails.user,
@@ -173,7 +174,7 @@ module.exports = app => {
                 thankyouCard_Employees(thankyouCard_Employee, 'title');
                 sendCard(result.data, thankyouCard_Employee);
               }
-              else {
+              else{
                 thankyouCard_Managers(thankyouCard_Manager, 'title');
                 sendCard(result.data, thankyouCard_Manager);
               }

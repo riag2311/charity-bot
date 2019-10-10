@@ -96,7 +96,10 @@
                 {
                     "type": "Action.Submit",
                     "title": "Submit",
-                    "id": "detailsSubmit"
+                    "id": "detailsSubmit",
+                    "data": {
+                        "buttonId": "detailsSubmit"
+                    }
                 }
             ]
         }
