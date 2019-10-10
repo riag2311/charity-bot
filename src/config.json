@@ -1,6 +1,6 @@
 {
-    "webhookUrl": "https://22c3c6eb.ngrok.io",
+    "webhookUrl": "http://bots.42hertz.com:8080",
     "token": "OTI0NDZiNWItMjEzZi00NjM3LTg3ZTYtZWVhNzVjYzk2MzEyZmQ5YzJjODQtNjc2_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f",
     "botEmail": "CharityBot@webex.bot",
-    "port": 80
+    "port": 8080
   }
