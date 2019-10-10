@@ -77,7 +77,7 @@ function thankyouCard_Employees(thankyouCard_Employee, key) {
             } else {
               thankyouCard_Employee['value'] = '-- No preferred charity --';
             }
-          else if (thankyouCard_Employee[property] === 'Business Unit')
+          else if (thankyouCard_Employee[property] === 'Business Unit :')
             thankyouCard_Employee['value'] = cardDetails.business_unit;
         }
         else if (typeof thankyouCard_Employee[property] === 'object') {
@@ -96,7 +96,7 @@ function thankyouCard_Managers(thankyouCard_Manager, key) {
         if (property === key) {
           if (thankyouCard_Manager[property] === 'Amount :')
             thankyouCard_Manager['value'] = "$" + cardDetails.amount;
-          else if (thankyouCard_Employee[property] === 'Business Unit')
+          else if (thankyouCard_Employee[property] === 'Business Unit :')
             thankyouCard_Employee['value'] = cardDetails.business_unit;
         }
         else if (typeof thankyouCard_Manager[property] === 'object') {
