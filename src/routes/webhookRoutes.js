@@ -129,8 +129,10 @@ module.exports = app => {
   app.post("/api/v1/allMessages", (req, res) => {
     console.info("Reached messages node");
     if ((req.body.data.personEmail === config.botEmail && req.body.event.toLowerCase() === "created" && req.body.resource.toLowerCase() === "memberships") || req.body.data.personEmail != config.botEmail) {
-      cardDetails.email = req.body.data.personEmail;
       sendCard(req.body.data, welcomeMessageCard);
+    }
+    if (req.body.data.personEmail != config.botEmail) {
+      cardDetails.email = req.body.data.personEmail;
     }
   });
 
@@ -149,8 +151,7 @@ module.exports = app => {
         console.log(result.data);
         switch (result.data.inputs.buttonId) {
           case "employeeBtn":
-            cardDetails.user = "employee"
-            cardDetails.email
+            cardDetails.user = "employee";
             sendCard(result.data, detailsCard_Employee);
             break;
           case "managerBtn":
@@ -163,20 +164,14 @@ module.exports = app => {
                 markdown: 'The **amount** entered is not a number. Please enter a number and re-submit the form.',
                 roomId: result.data.roomId,
               })
-              if (cardDetails.user == "employee") {
-                sendCard(result.data, detailsCard_Employee);
-              }
-              else{
-                sendCard(result.data, detailsCard_Manager);
-              }
-            } 
+            }
             else {
               cardDetails.amount = result.data.inputs.amountInput;
               cardDetails.date = Date(Date.now()).toString();
               cardDetails.charityname = result.data.inputs.preferredCharity;
               cardDetails.business_unit = result.data.inputs.businessUnit;
-              if(!cardDetails.charityname){
-                cardDetails.charityname="No Preference";
+              if (!cardDetails.charityname) {
+                cardDetails.charityname = "-- No Preference --";
               }
               const charitycontribution_storage = new Charitycontribution({
                 email: cardDetails.email,
