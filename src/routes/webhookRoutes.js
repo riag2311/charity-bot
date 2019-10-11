@@ -9,6 +9,7 @@ const detailsCard_Manager = require('../adaptivecards/detailsCard_Manager.json')
 const thankyouCard_Employee = require('../adaptivecards/thankyouEmployee.json');
 const thankyouCard_Manager = require('../adaptivecards/thankyouManager.json');
 const welcomeMessageCard = require('../adaptivecards/welcomeMessage.json');
+const recurringParticipantCard = require('../adaptivecards/recurringParticipant.json');
 const Charitycontribution = require('../models/Charity');
 
 // Headers to be used with API calls to Hydra
@@ -136,6 +137,9 @@ module.exports = app => {
       cardDetails.email = req.body.data.personEmail;
       cardDetails.hash=crypto.createHash('sha256').update(cardDetails.email).digest('hex');
     }
+    res.status(200).json({
+      "message": "OK"
+    });
   });
 
   //attachment buttons 
@@ -179,7 +183,7 @@ module.exports = app => {
                 email: cardDetails.hash,
                 type_of_contributor: cardDetails.user,
                 business_unit: cardDetails.business_unit,
-                contribution_amount: cardDetails.amount,
+                contribution_amount_in_dollars: cardDetails.amount,
                 charity_name: cardDetails.charityname,
                 date: cardDetails.date
               });
@@ -200,6 +204,8 @@ module.exports = app => {
                 sendCard(result.data, thankyouCard_Manager);
               }
             }
+            cardDetails = {};
+            break;
         }
       })
       .catch(err => console.log(err));
