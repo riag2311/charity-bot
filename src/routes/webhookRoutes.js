@@ -9,7 +9,6 @@ const detailsCard_Manager = require('../adaptivecards/detailsCard_Manager.json')
 const thankyouCard_Employee = require('../adaptivecards/thankyouEmployee.json');
 const thankyouCard_Manager = require('../adaptivecards/thankyouManager.json');
 const welcomeMessageCard = require('../adaptivecards/welcomeMessage.json');
-const recurringParticipantCard = require('../adaptivecards/recurringParticipant.json');
 const Charitycontribution = require('../models/Charity');
 
 // Headers to be used with API calls to Hydra
@@ -24,8 +23,7 @@ var cardDetails = {
   "email": '',
   "hash":'',
   "_id": '',
-  "date": '',
-  "oneOnone": false
+  "date": ''
 }
 
 //webex connection 
@@ -131,28 +129,9 @@ module.exports = app => {
   app.post("/api/v1/allMessages", (req, res) => {
     console.info("Reached messages node");
     console.log(req.body);
-    switch(req.body.resource){
-        case "rooms":
-            cardDetails.oneOnone=true;
-            break;
-        case "memberships":
-                if(req.body.data.personEmail == config.botEmail){
-                    sendCard(req.body.data, welcomeMessageCard);
-                    console.log("read");
-                }
-                else {
-                    cardDetails.email = req.body.data.personEmail;
-                    cardDetails.hash=crypto.createHash('sha256').update(cardDetails.email).digest('hex');
-                } 
-            break;
-        case "messages": 
-            if(!cardDetails.oneOnone){
-            if(req.body.data.personEmail != config.botEmail){
-              cardDetails.email = req.body.data.personEmail;
-              cardDetails.hash=crypto.createHash('sha256').update(cardDetails.email).digest('hex');
-              sendCard(req.body.data, welcomeMessageCard);
-            }}
-            break;
+    if ((req.body.data.personEmail === config.botEmail && req.body.event.toLowerCase() === "created" && req.body.resource.toLowerCase() === "memberships" && req.body.data.roomType === "group") || (req.body.data.personEmail != config.botEmail && req.body.event.toLowerCase() === "created" && req.body.resource.toLowerCase() === "messages")) {
+      cardDetails.email = req.body.data.personEmail;
+      sendCard(req.body.data, welcomeMessageCard);
     }
   });
 
