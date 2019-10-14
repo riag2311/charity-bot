@@ -24,7 +24,8 @@ var cardDetails = {
   "email": '',
   "hash":'',
   "_id": '',
-  "date": ''
+  "date": '',
+  "oneOnone": false
 }
 
 //webex connection 
@@ -126,20 +127,33 @@ function isNumeric(n) {
 
 
 module.exports = app => {
-
   //text messages
   app.post("/api/v1/allMessages", (req, res) => {
     console.info("Reached messages node");
-    if ((req.body.data.personEmail === config.botEmail && req.body.event.toLowerCase() === "created" && req.body.resource.toLowerCase() === "memberships") || req.body.data.personEmail != config.botEmail) {
-      sendCard(req.body.data, welcomeMessageCard);
+    console.log(req.body);
+    switch(req.body.resource){
+        case "rooms":
+            cardDetails.oneOnone=true;
+            break;
+        case "memberships":
+                if(req.body.data.personEmail == config.botEmail){
+                    sendCard(req.body.data, welcomeMessageCard);
+                    console.log("read");
+                }
+                else {
+                    cardDetails.email = req.body.data.personEmail;
+                    cardDetails.hash=crypto.createHash('sha256').update(cardDetails.email).digest('hex');
+                } 
+            break;
+        case "messages": 
+            if(!cardDetails.oneOnone){
+            if(req.body.data.personEmail != config.botEmail){
+              cardDetails.email = req.body.data.personEmail;
+              cardDetails.hash=crypto.createHash('sha256').update(cardDetails.email).digest('hex');
+              sendCard(req.body.data, welcomeMessageCard);
+            }}
+            break;
     }
-    if (req.body.data.personEmail != config.botEmail) {
-      cardDetails.email = req.body.data.personEmail;
-      cardDetails.hash=crypto.createHash('sha256').update(cardDetails.email).digest('hex');
-    }
-    res.status(200).json({
-      "message": "OK"
-    });
   });
 
   //attachment buttons 
