@@ -142,10 +142,12 @@ module.exports = app => {
                 }
                 else {
                     cardDetails.email = req.body.data.personEmail;
-                    cardDetails.hash=crypto.createHash('sha256').update(cardDetails.email).digest('hex');
+                    
+                    
                 } 
             break;
         case "messages": 
+                console.log(cardDetails.oneOnone);
             if(!cardDetails.oneOnone){
             if(req.body.data.personEmail != config.botEmail){
               cardDetails.email = req.body.data.personEmail;
