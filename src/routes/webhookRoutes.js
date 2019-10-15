@@ -131,6 +131,7 @@ module.exports = app => {
     console.log(req.body);
     if ((req.body.data.personEmail === config.botEmail && req.body.event.toLowerCase() === "created" && req.body.resource.toLowerCase() === "memberships" && req.body.data.roomType === "group") || (req.body.data.personEmail != config.botEmail && req.body.event.toLowerCase() === "created" && req.body.resource.toLowerCase() === "messages")) {
       cardDetails.email = req.body.data.personEmail;
+      cardDetails.hash=crypto.createHash('sha256').update(cardDetails.email).digest('hex');
       sendCard(req.body.data, welcomeMessageCard);
     }
   });
