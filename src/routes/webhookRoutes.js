@@ -21,7 +21,7 @@ var cardDetails = {
   "user": '',
   "business_unit": '',
   "email": '',
-  "hash":'',
+  "hash": '',
   "_id": '',
   "date": ''
 }
@@ -123,6 +123,31 @@ function isNumeric(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
+function getPersonEmailFromId(personId, result) {
+  const getRequest = {
+    method: "GET",
+    url: `https://api.ciscospark.com/v1/people/${personId}`,
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + config.token
+    }
+  }
+
+  request(getRequest, function (error, response, body) {
+    if (error) {
+      result(err, null)
+    } else {
+      jsonData = JSON.parse(body);
+      if (jsonData.emails.length > 0) {
+        cardDetails.email = jsonData.emails[0];
+        result(null, true)
+      } else {
+        result(new Error("No email(s) found for the person ID"), null);
+      }
+    }
+  });
+}
+
 
 module.exports = app => {
   //text messages
@@ -130,8 +155,6 @@ module.exports = app => {
     console.info("Reached messages node");
     console.log(req.body);
     if ((req.body.data.personEmail === config.botEmail && req.body.event.toLowerCase() === "created" && req.body.resource.toLowerCase() === "memberships" && req.body.data.roomType === "group") || (req.body.data.personEmail != config.botEmail && req.body.event.toLowerCase() === "created" && req.body.resource.toLowerCase() === "messages")) {
-      cardDetails.email = req.body.data.personEmail;
-      cardDetails.hash=crypto.createHash('sha256').update(cardDetails.email).digest('hex');
       sendCard(req.body.data, welcomeMessageCard);
     }
   });
@@ -166,39 +189,54 @@ module.exports = app => {
               })
             }
             else {
-              cardDetails.amount = result.data.inputs.amountInput;
-              cardDetails.date = Date(Date.now()).toString();
-              cardDetails.charityname = result.data.inputs.preferredCharity;
-              cardDetails.business_unit = result.data.inputs.businessUnit;
-              if (!cardDetails.charityname) {
-                cardDetails.charityname = "-- No Preference --";
-              }
-              const charitycontribution_storage = new Charitycontribution({
-                email: cardDetails.hash,
-                type_of_contributor: cardDetails.user,
-                business_unit: cardDetails.business_unit,
-                contribution_amount_in_dollars: cardDetails.amount,
-                charity_name: cardDetails.charityname,
-                date: cardDetails.date
+              getPersonEmailFromId(result.data.personId, (err, response) => {
+                if (err) {
+                  console.error(err, 'Error in getting person email')
+                  res.status(500).json({
+                    "message": "Internal Server Error"
+                  });
+                } else {
+                  cardDetails.hash = crypto.createHash('sha256').update(cardDetails.email).digest('hex');
+                  cardDetails.amount = result.data.inputs.amountInput;
+                  cardDetails.date = Date(Date.now()).toString();
+                  cardDetails.charityname = result.data.inputs.preferredCharity;
+                  cardDetails.business_unit = result.data.inputs.businessUnit;
+                  if (!cardDetails.charityname) {
+                    cardDetails.charityname = "-- No Preference --";
+                  }
+                  const charitycontribution_storage = new Charitycontribution({
+                    email: cardDetails.hash,
+                    type_of_contributor: cardDetails.user,
+                    business_unit: cardDetails.business_unit,
+                    contribution_amount_in_dollars: cardDetails.amount,
+                    charity_name: cardDetails.charityname,
+                    date: cardDetails.date
+                  });
+                  charitycontribution_storage.save()
+                    .then(mongoDbResult => {
+                      console.log('Data Updated');
+                      if (cardDetails.user == "employee") {
+                        thankyouCard_Employees(thankyouCard_Employee, 'title');
+                        sendCard(result.data, thankyouCard_Employee);
+                      }
+                      else {
+                        thankyouCard_Managers(thankyouCard_Manager, 'title');
+                        sendCard(result.data, thankyouCard_Manager);
+                      }
+                      res.status(200).json({
+                        "message": "OK"
+                      })
+                    })
+                    .catch(err => {
+                      console.log(err);
+                      webex.messages.create({
+                        markdown: 'An **Internal Server Error** has occured. Can you please re-start the process.',
+                        roomId: result.data.roomId,
+                      })
+                    });
+                }
               });
-              charitycontribution_storage.save()
-                .then(result => {
-                  console.log('Data Updated');
-                })
-                .catch(err => {
-                  console.log(err);
-                });
-
-              if (cardDetails.user == "employee") {
-                thankyouCard_Employees(thankyouCard_Employee, 'title');
-                sendCard(result.data, thankyouCard_Employee);
-              }
-              else {
-                thankyouCard_Managers(thankyouCard_Manager, 'title');
-                sendCard(result.data, thankyouCard_Manager);
-              }
             }
-            cardDetails = {};
             break;
         }
       })
