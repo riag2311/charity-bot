@@ -62,6 +62,10 @@
             "placeholder": "",
             "choices": [
                 {
+                    "title": "Sri’s staff",
+                    "value": "Sri’s staff"
+                },
+                {
                     "title": "Amy’s staff",
                     "value": "Amy’s staff"
                 },
