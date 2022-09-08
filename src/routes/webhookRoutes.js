@@ -19,6 +19,7 @@ var cardDetails = {
   //"_id": '',
   //"charityname": '',
   "amount": '',
+  "matched_amount": '',
   "user": '',
   "business_unit": '',
   "email": '',
@@ -182,7 +183,7 @@ module.exports = app => {
             sendCard(result.data, detailsCard_Manager);
             break;
           case "detailsSubmit":
-            if (!isNumeric(result.data.inputs.amountInput) || (result.data.inputs.amountInput) < 0) {
+            if (!isNumeric(result.data.inputs.amountInput) || (result.data.inputs.amountInput) < 0 || !isNumeric(result.data.inputs.matchedAmountInput) || (result.data.inputs.matchedAmountInput) < 0) {
               webex.messages.create({
                 markdown: 'The **amount** entered is not accurate. Please enter the amount and re-submit the form.',
                 roomId: result.data.roomId,
@@ -198,6 +199,7 @@ module.exports = app => {
                 } else {
                   cardDetails.hash = crypto.createHash('sha256').update(cardDetails.email).digest('hex');
                   cardDetails.amount = result.data.inputs.amountInput;
+                  cardDetails.matched_amount = result.data.inputs.matchedAmountInput;
                   cardDetails.date = Date(Date.now()).toString();
                   cardDetails.business_unit = result.data.inputs.businessUnit;
                   //cardDetails.charityname = result.data.inputs.preferredCharity;
@@ -209,6 +211,7 @@ module.exports = app => {
                     type_of_contributor: cardDetails.user,
                     business_unit: cardDetails.business_unit,
                     contribution_amount_in_dollars: cardDetails.amount,
+                    contribution_amount_matched: cardDetails.matched_amount,
                     date: cardDetails.date
                     //charity_name: cardDetails.charityname
                   });

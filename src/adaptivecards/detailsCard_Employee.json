@@ -1,6 +1,6 @@
 {
     "type": "AdaptiveCard",
-    "version": "1.0",
+    "version": "1.5",
     "body": [
         {
             "type": "ColumnSet",
@@ -11,9 +11,8 @@
                     "items": [
                         {
                             "type": "Image",
-                            "altText": "",
                             "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/1200px-Cisco_logo_blue_2016.svg.png",
-                            "size": "medium"
+                            "size": "Medium"
                         }
                     ]
                 }
@@ -21,7 +20,7 @@
         },
         {
             "type": "TextBlock",
-            "text": "Cisco Manager Charity Match Drive 2021",
+            "text": "Cisco Manager Charity Match Drive 2022",
             "weight": "Bolder",
             "size": "Medium",
             "horizontalAlignment": "Center",
@@ -29,14 +28,14 @@
         },
         {
             "type": "TextBlock",
-            "text": "You have identified yourself as an \"Employee\" contributor, which means every dollar you donate during CY 2021 will be matched by participating managers!",
+            "text": "You have identified yourself as an \"Employee\" contributor.",
             "wrap": true
         },
         {
             "type": "TextBlock",
-            "text": "How much have/will you donate in calendar year 2021?",
+            "text": "How much have/will you donate in calendar year 2022?",
             "spacing": "Medium",
-            "horizontalAlignment": "Center"
+            "horizontalAlignment": "Left"
         },
         {
             "type": "TextBlock",
@@ -45,7 +44,8 @@
         {
             "type": "Input.Number",
             "placeholder": "Contribution",
-            "id": "amountInput"
+            "id": "amountInput",
+            "min": 0
         },
         {
             "type": "TextBlock",
@@ -55,143 +55,111 @@
         },
         {
             "type": "TextBlock",
-            "text": "Which BU/group are you in?"
+            "text": "How much of this donation has been/will be matched by Cisco?",
+            "horizontalAlignment": "Left",
+            "spacing": "Medium"
+        },
+        {
+            "type": "TextBlock",
+            "text": "Amount:-"
+        },
+        {
+            "type": "Input.Number",
+            "placeholder": "Contribution",
+            "id": "matchedAmountInput",
+            "min": 0
+        },
+        {
+            "type": "TextBlock",
+            "wrap": true,
+            "size": "Small",
+            "weight": "Lighter",
+            "text": "For most people it will be the same as the donation amount",
+            "spacing": "Small"
+        },
+        {
+            "type": "TextBlock",
+            "wrap": true,
+            "weight": "Lighter",
+            "size": "Small",
+            "text": "*Please reply in US dollars and cents.",
+            "spacing": "Small"
+        },
+        {
+            "type": "TextBlock",
+            "text": "Which BU/group are you in?",
+            "spacing": "Medium"
         },
         {
             "type": "Input.ChoiceSet",
-            "placeholder": "",
             "choices": [
                 {
-                    "title": "Collab - Joel Bailon",
-                    "value": "Collab - Joel Bailon"
+                    "title": "Javed's Staff",
+                    "value": "Javed's Staff"
                 },
                 {
-                    "title": "Collab - Chris Barwick",
-                    "value": "Collab - Chris Barwick"
+                    "title": "BD, Strategy and planning (Joel)",
+                    "value": "BD, Strategy and planning (Joel)"
                 },
                 {
-                    "title": "Collab - Anurag Dhingra",
-                    "value": "Collab - Anurag Dhingra"
+                    "title": "GTM (ChrisB)",
+                    "value": "GTM (ChrisB)"
                 },
                 {
-                    "title": "Collab - Lorrissa Horton",
-                    "value": "Collab - Lorrissa Horton"
+                    "title": "Infrastructure (DanC)",
+                    "value": "Infrastructure (DanC)"
                 },
                 {
-                    "title": "Collab - Isaac Khan",
-                    "value": "Collab - Isaac Khan"
+                    "title": "CTG CTO (Anurag)",
+                    "value": "CTG CTO (Anurag)"
                 },
                 {
-                    "title": "Collab - Snorre Kjesbu",
-                    "value": "Collab - Snorre Kjesbu"
+                    "title": "Calling, Contact Center and Online (Lorrissa)",
+                    "value": "Calling, Contact Center and Online (Lorrissa)"
                 },
                 {
-                    "title": "Collab - Abhay Kulkarni",
-                    "value": "Collab - Abhay Kulkarni"
+                    "title": "Strategy and planning (Isaac)",
+                    "value": "Strategy and planning (Isaac)"
                 },
                 {
-                    "title": "Collab - Giogio Mihalia",
-                    "value": "Collab - Giogio Mihalia"
+                    "title": "Devices (Snorre)",
+                    "value": "Devices (Snorre)"
                 },
                 {
-                    "title": "Collab - Stephanie Noble",
-                    "value": "Collab - Stephanie Noble"
+                    "title": "Meetings (Abhay)",
+                    "value": "Meetings (Abhay)"
                 },
                 {
-                    "title": "Collab - Aruna Ravichandran",
-                    "value": "Collab - Aruna Ravichandran"
+                    "title": "CPaaS (Jay)",
+                    "value": "CPaaS (Jay)"
                 },
                 {
-                    "title": "Collab - Omar Tawakol",
-                    "value": "Collab - Omar Tawakol"
+                    "title": "Marketing (Aruna)",
+                    "value": "Marketing (Aruna)"
                 },
                 {
-                    "title": "Collab - Gaurav Verma",
-                    "value": "Collab - Gaurav Verma"
+                    "title": "Growth (Omar/Peter)",
+                    "value": "Growth (Omar/Peter)"
                 },
                 {
-                    "title": "Collab - Javed Khan",
-                    "value": "Collab - Javed Khan"
+                    "title": "Partners (DP Venkatesh)",
+                    "value": "Partners (DP Venkatesh)"
                 },
                 {
-                    "title": "SBG - Bridget Cassidy",
-                    "value": "SBG - Bridget Cassidy"
+                    "title": "Customer Success (Gaurav)",
+                    "value": "Customer Success (Gaurav)"
                 },
                 {
-                    "title": "SBG - Jason Cyr",
-                    "value": "SBG - Jason Cyr"
+                    "title": "Security & Collab CTO (Cullen)",
+                    "value": "Security & Collab CTO (Cullen)"
                 },
                 {
-                    "title": "SBG - Ash Devata",
-                    "value": "SBG - Ash Devata"
-                },
-                {
-                    "title": "SBG - Konstantin Goldin",
-                    "value": "SBG - Konstantin Goldin"
-                },
-                {
-                    "title": "SBG - Al Huger",
-                    "value": "SBG - Al Huger"
-                },
-                {
-                    "title": "SBG - Neville Letztlich",
-                    "value": "SBG - Neville Letztlich"
-                },
-                {
-                    "title": "SBG - Raviv Levi",
-                    "value": "SBG - Raviv Levi"
-                },
-                {
-                    "title": "SBG - Morgan Mann",
-                    "value": "SBG - Morgan Mann"
-                },
-                {
-                    "title": "SBG - Anil Nair",
-                    "value": "SBG - Anil Nair"
-                },
-                {
-                    "title": "SBG - Michael O'Gorman",
-                    "value": "SBG - Michael O'Gorman"
-                },
-                {
-                    "title": "SBG - Chandodaya Prasad",
-                    "value": "SBG - Chandodaya Prasad"
-                },
-                {
-                    "title": "SBG - Prabhat Singh",
-                    "value": "SBG - Prabhat Singh"
-                },
-                {
-                    "title": "SBG - CDug Song",
-                    "value": "SBG - CDug Song"
-                },
-                {
-                    "title": "SBG - Matt Watchinski",
-                    "value": "SBG - Matt Watchinski"
-                },
-                {
-                    "title": "SBG - Shaila Shankar",
-                    "value": "SBG - Shaila Shankar"
-                },
-                {
-                    "title": "Sec Collab - Cullen Jennings",
-                    "value": "Sec Collab - Cullen Jennings"
-                },
-                {
-                    "title": "Sec Collab - Jessie Saini",
-                    "value": "Sec Collab - Jessie Saini"
-                },
-                {
-                    "title": "Sec Collab - Jeff Schultz",
-                    "value": "Sec Collab - Jeff Schultz"
-                },
-                {
-                    "title": "Sec Collab - Jeetu Patel",
-                    "value": "Sec Collab - Jeetu Patel"
+                    "title": "Other",
+                    "value": "Other"
                 }
             ],
             "id": "businessUnit",
-            "value": "Sec Collab - Jeetu Patel",
+            "value": "Javed's Staff",
             "wrap": true
         },
         {
