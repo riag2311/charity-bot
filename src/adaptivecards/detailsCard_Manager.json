@@ -55,7 +55,7 @@
         },
         {
             "type": "TextBlock",
-            "text": "How much of this donation has been matched by Cisco?",
+            "text": "How much of this donation has been/will be matched by Cisco?",
             "horizontalAlignment": "Left",
             "spacing": "Medium"
         },
