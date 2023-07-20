@@ -1,6 +1,6 @@
 {
     "type": "AdaptiveCard",
-    "version": "1.0",
+    "version": "1.3",
     "body": [
         {
             "type": "ColumnSet",
@@ -13,7 +13,7 @@
                             "type": "Image",
                             "altText": "",
                             "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/1200px-Cisco_logo_blue_2016.svg.png",
-                            "size": "medium"
+                            "size": "Medium"
                         }
                     ]
                 }
@@ -21,22 +21,25 @@
         },
         {
             "type": "TextBlock",
-            "text": "Cisco Manager Charity Match Drive 2022",
+            "text": "Cisco Manager Charity Match Drive 2023",
             "weight": "Bolder",
             "size": "Medium",
             "horizontalAlignment": "Center",
-            "spacing": "Medium"
+            "spacing": "Medium",
+            "wrap": true
         },
         {
             "type": "TextBlock",
-            "text": "Hello!! Welcome to Cisco's 2022 Charity Match Drive. My name is Charity Bot.",
-            "wrap": true
+            "text": "Hello!! Welcome to Cisco's 2023 Charity Match Drive. My name is Charity Bot.",
+            "wrap": true,
+            "horizontalAlignment": "Left"
         },
         {
             "type": "TextBlock",
             "text": "Please select your role.",
             "horizontalAlignment": "Left",
-            "spacing": "Medium"
+            "spacing": "Medium",
+            "wrap": true
         },
         {
             "type": "ColumnSet",
@@ -52,14 +55,19 @@
                                     "type": "Action.Submit",
                                     "title": "Employee",
                                     "id": "employeeBtn",
-                                    "data":{
+                                    "data": {
                                         "buttonId": "employeeBtn"
-                                      }
+                                    }
                                 }
-                            ]
+                            ],
+                            "horizontalAlignment": "Right"
                         }
                     ],
                     "horizontalAlignment": "Center"
+                },
+                {
+                    "type": "Column",
+                    "width": "15px"
                 },
                 {
                     "type": "Column",
@@ -70,13 +78,14 @@
                             "actions": [
                                 {
                                     "type": "Action.Submit",
-                                    "title": "Manager",
+                                    "title": " Manager ",
                                     "id": "managerBtn",
-                                    "data":{
+                                    "data": {
                                         "buttonId": "managerBtn"
-                                      }
+                                    }
                                 }
-                            ]
+                            ],
+                            "horizontalAlignment": "Left"
                         }
                     ],
                     "horizontalAlignment": "Center"

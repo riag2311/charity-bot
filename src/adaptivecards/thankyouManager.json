@@ -1,6 +1,6 @@
 {
     "type": "AdaptiveCard",
-    "version": "1.0",
+    "version": "1.3",
     "body": [
         {
             "type": "ColumnSet",
@@ -13,7 +13,7 @@
                             "type": "Image",
                             "altText": "",
                             "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/1200px-Cisco_logo_blue_2016.svg.png",
-                            "size": "medium"
+                            "size": "Medium"
                         }
                     ]
                 }
@@ -21,11 +21,12 @@
         },
         {
             "type": "TextBlock",
-            "text": "Cisco Manager Charity Match Drive 2022",
+            "text": "Cisco Manager Charity Match Drive 2023",
             "weight": "Bolder",
             "size": "Medium",
             "horizontalAlignment": "Center",
-            "spacing": "Medium"
+            "spacing": "Medium",
+            "wrap": true
         },
         {
             "type": "TextBlock",
@@ -35,7 +36,8 @@
         },
         {
             "type": "TextBlock",
-            "text": "Your contribution will go to a worthy cause."
+            "text": "Your contribution will go to a worthy cause.",
+            "wrap": true
         },
         {
             "type": "FactSet",
