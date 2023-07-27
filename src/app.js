@@ -123,7 +123,7 @@ function constructDeleteWebhooksRequest(webhookId) {
 }
 
 //Mongoose
-mongoose.connect('mongodb+srv://riag:charitybot@charity-sr7nb.mongodb.net/charity?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://riag:charitybot@charity-sr7nb.mongodb.net/charity?retryWrites=true', {useNewUrlParser: true, useUnifiedTopology: true})
 .then(result => {
   app.listen(27017);
 })
